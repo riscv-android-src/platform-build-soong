@@ -418,7 +418,7 @@ func (linker *baseLinker) linkerFlags(ctx ModuleContext, flags Flags) Flags {
 	if linker.useClangLld(ctx) {
 		flags.Global.LdFlags = append(flags.Global.LdFlags, fmt.Sprintf("${config.%sGlobalLldflags}", hod))
 		if !BoolDefault(linker.Properties.Pack_relocations, true) {
-			flags.Global.LdFlags = append(flags.Global.LdFlags, "-Wl,--pack-dyn-relocs=none")
+			//flags.Global.LdFlags = append(flags.Global.LdFlags, "-Wl,--pack-dyn-relocs=none")
 		} else if ctx.Device() {
 			// SHT_RELR relocations are only supported at API level >= 30.
 			// ANDROID_RELR relocations were supported at API level >= 28.

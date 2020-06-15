@@ -55,6 +55,17 @@ var (
 		"-Werror=pragma-pack-suspicious-include",
 		"-Werror=string-plus-int",
 		"-Werror=unreachable-code-loop-increment",
+		"-Wno-implicit-int-float-conversion",
+		"-Wno-deprecated-copy",
+		"-Wno-implicit-fallthrough",
+		"-Wno-unused-parameter",
+		"-Wno-deprecated-copy",
+		"-Wno-int-in-bool-context",
+		"-Wno-tautological-overlap-compare",
+		"-Wno-c99-designator",
+		"-Wno-reorder-init-list",
+		"-Wno-int-in-bool-context",
+		"-Wno-bool-operation",
 	}
 
 	commonGlobalConlyflags = []string{}
@@ -145,8 +156,10 @@ var (
 
 	// prebuilts/clang default settings.
 	ClangDefaultBase         = "prebuilts/clang/host"
-	ClangDefaultVersion      = "clang-r416183b1"
-	ClangDefaultShortVersion = "12.0.7"
+	//ClangDefaultVersion      = "clang-r416183b1"
+	//ClangDefaultShortVersion = "12.0.7"
+	ClangDefaultVersion      = "clang-dev"
+	ClangDefaultShortVersion = "11.0.3"
 
 	// Directories with warnings from Android.bp files.
 	WarningAllowedProjects = []string{

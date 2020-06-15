@@ -842,6 +842,7 @@ var propertyPrefixes = []struct{ mk, bp string }{
 	{"arm64", "arch.arm64"},
 	{"x86", "arch.x86"},
 	{"x86_64", "arch.x86_64"},
+	{"riscv64", "arch.riscv64"},
 	{"32", "multilib.lib32"},
 	// 64 must be after x86_64
 	{"64", "multilib.lib64"},

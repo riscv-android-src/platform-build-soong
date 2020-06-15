@@ -38,6 +38,9 @@ module {
         arm64: {
             // Host or device variants with arm64 architecture
         },
+        riscv64: {
+            // Host or device variants with riscv64 architecture
+        },
         x86: {
             // Host or device variants with x86 architecture
         },
@@ -123,7 +126,7 @@ func (a Arch) String() string {
 // well as the "common" architecture used for modules that support multiple architectures, for
 // example Java modules.
 type ArchType struct {
-	// Name is the name of the architecture type, "arm", "arm64", "x86", or "x86_64".
+	// Name is the name of the architecture type, "arm", "arm64", "riscv64", "x86", or "x86_64".
 	Name string
 
 	// Field is the name of the field used in properties that refer to the architecture, e.g. "Arm64".
@@ -145,6 +148,7 @@ var (
 
 	Arm    = newArch("arm", "lib32")
 	Arm64  = newArch("arm64", "lib64")
+	Riscv64  = newArch("riscv64", "lib64")
 	X86    = newArch("x86", "lib32")
 	X86_64 = newArch("x86_64", "lib64")
 
@@ -599,7 +603,7 @@ func GetOsSpecificVariantsOfCommonOSVariant(mctx BaseModuleContext) []Module {
 //      target.host.compile_multilib).
 //    - The default multilib passed to InitAndroidArchModule if compile_multilib was not set.
 // Valid multilib values include:
-//    "both": compile for all Targets supported by the OsClass (generally x86_64 and x86, or arm64 and arm).
+//    "both": compile for all Targets supported by the OsClass (generally x86_64 and x86, or arm64 and arm, or riscv64).
 //    "first": compile for only a single preferred Target supported by the OsClass.  This is generally x86_64 or arm64,
 //        but may be arm for a 32-bit only build.
 //    "32": compile for only a single 32-bit Target supported by the OsClass.
@@ -1545,6 +1549,10 @@ func getNdkAbisConfig() []archConfig {
 	return []archConfig{
 		{"arm", "armv7-a", "", []string{"armeabi-v7a"}},
 		{"arm64", "armv8-a-branchprot", "", []string{"arm64-v8a"}},
+		{"riscv64", "", "", []string{"riscv64"}},
+		{"riscv64", "rv64imafc", "", []string{"riscv64"}},
+		{"riscv64", "rv64imafdc", "", []string{"riscv64"}},
+		{"riscv64", "rv64imac", "c910", []string{"riscv64"}},
 		{"x86", "", "", []string{"x86"}},
 		{"x86_64", "", "", []string{"x86_64"}},
 	}
@@ -1555,6 +1563,7 @@ func getAmlAbisConfig() []archConfig {
 	return []archConfig{
 		{"arm", "armv7-a-neon", "", []string{"armeabi-v7a"}},
 		{"arm64", "armv8-a", "", []string{"arm64-v8a"}},
+		{"riscv64", "", "", []string{"riscv64"}},
 		{"x86", "", "", []string{"x86"}},
 		{"x86_64", "", "", []string{"x86_64"}},
 	}
