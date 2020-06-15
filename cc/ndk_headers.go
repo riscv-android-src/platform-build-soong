@@ -139,6 +139,9 @@ func (m *headerModule) GenerateAndroidBuildActions(ctx android.ModuleContext) {
 	if ctx.Config().NdkAbis() && strings.Contains(ctx.ModuleName(), "mips") {
 		return
 	}
+	if ctx.Config().NdkAbis() && strings.Contains(ctx.ModuleName(), "riscv") {
+		return
+        }
 
 	srcFiles := android.PathsForModuleSrcExcludes(ctx, m.properties.Srcs, m.properties.Exclude_srcs)
 	for _, header := range srcFiles {

@@ -341,7 +341,7 @@ func (linker *baseLinker) linkerFlags(ctx ModuleContext, flags Flags) Flags {
 	if linker.useClangLld(ctx) {
 		flags.LdFlags = append(flags.LdFlags, fmt.Sprintf("${config.%sGlobalLldflags}", hod))
 		if !BoolDefault(linker.Properties.Pack_relocations, true) {
-			flags.LdFlags = append(flags.LdFlags, "-Wl,--pack-dyn-relocs=none")
+			//flags.LdFlags = append(flags.LdFlags, "-Wl,--pack-dyn-relocs=none")
 		} else if ctx.Device() {
 			// The SHT_RELR relocations is only supported by API level >= 28.
 			// Do not turn this on if older version NDK is used.
@@ -396,7 +396,7 @@ func (linker *baseLinker) linkerFlags(ctx ModuleContext, flags Flags) Flags {
 	flags.LdFlags = append(flags.LdFlags, proptools.NinjaAndShellEscapeList(linker.Properties.Ldflags)...)
 
 	if ctx.Host() {
-		rpath_prefix := `\$$ORIGIN/`
+		rpath_prefix := `$$ORIGIN/`
 		if ctx.Darwin() {
 			rpath_prefix = "@loader_path/"
 		}
@@ -456,8 +456,8 @@ func (linker *baseLinker) linkerFlags(ctx ModuleContext, flags Flags) Flags {
 		symbolOrderingFile := ctx.ExpandOptionalSource(
 			linker.Properties.Symbol_ordering_file, "Symbol_ordering_file")
 		if symbolOrderingFile.Valid() {
-			flags.LdFlags = append(flags.LdFlags,
-				"-Wl,--symbol-ordering-file,"+symbolOrderingFile.String())
+			//flags.LdFlags = append(flags.LdFlags,
+			//	"-Wl,--symbol-ordering-file,"+symbolOrderingFile.String())
 			flags.LdFlagsDeps = append(flags.LdFlagsDeps, symbolOrderingFile.Path())
 		}
 	}

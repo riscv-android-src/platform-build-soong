@@ -112,6 +112,7 @@ bootstrap_go_package {
         "cc/config/arm64_fuchsia_device.go",
         "cc/config/mips_device.go",
         "cc/config/mips64_device.go",
+        "cc/config/riscv64_device.go",
         "cc/config/x86_device.go",
         "cc/config/x86_64_device.go",
         "cc/config/x86_64_fuchsia_device.go",
@@ -450,6 +451,9 @@ toolchain_library {
         arm64: {
             src: "prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9/aarch64-linux-android/lib64/libatomic.a",
         },
+        riscv64: {
+            src: "prebuilts/gcc/linux-x86/riscv64/riscv64-linux-android-8.1/riscv64-linux-android/lib64/libatomic.a",
+        },
         x86: {
             src: "prebuilts/gcc/linux-x86/x86/x86_64-linux-android-4.9/x86_64-linux-android/lib/libatomic.a",
         },
@@ -471,6 +475,9 @@ toolchain_library {
         },
         arm64: {
             src: "prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9/lib/gcc/aarch64-linux-android/4.9.x/libgcc.a",
+        },
+        riscv64: {
+            src: "prebuilts/gcc/linux-x86/riscv64/riscv64-linux-android-8.1/lib/gcc/riscv64-linux-android/8.4.0/libgcc.a",
         },
         x86: {
             src: "prebuilts/gcc/linux-x86/x86/x86_64-linux-android-4.9/lib/gcc/x86_64-linux-android/4.9.x/32/libgcc.a",
@@ -539,12 +546,16 @@ toolchain_library {
                     "_Unwind_GetTextRelBase",
                     "__gnu_unwind_execute",
                     "__gnu_unwind_frame",
+                    "__lttf2",
                 ],
                 use_gnu_strip: true,
             },
         },
         arm64: {
             src: "prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9/lib/gcc/aarch64-linux-android/4.9.x/libgcc.a",
+        },
+        riscv64: {
+            src: "prebuilts/gcc/linux-x86/riscv64/riscv64-linux-android-8.1/lib/gcc/riscv64-linux-android/8.4.0/libgcc.a",
         },
         x86: {
             src: "prebuilts/gcc/linux-x86/x86/x86_64-linux-android-4.9/lib/gcc/x86_64-linux-android/4.9.x/32/libgcc.a",
@@ -620,6 +631,9 @@ toolchain_library {
         },
         arm64: {
             src: "prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9/lib/gcc/aarch64-linux-android/4.9.x/libgcov.a",
+        },
+        riscv64: {
+            src: "prebuilts/gcc/linux-x86/riscv64/riscv64-linux-android-8.1/lib/gcc/riscv64-linux-android/8.4.0/libgcov.a",
         },
         x86: {
             src: "prebuilts/gcc/linux-x86/x86/x86_64-linux-android-4.9/lib/gcc/x86_64-linux-android/4.9.x/32/libgcov.a",
