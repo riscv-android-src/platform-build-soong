@@ -780,32 +780,32 @@ func getRefAbiDumpFile(ctx ModuleContext, vndkVersion, fileName string) android.
 }
 
 func (library *libraryDecorator) linkSAbiDumpFiles(ctx ModuleContext, objs Objects, fileName string, soFile android.Path) {
-	if len(objs.sAbiDumpFiles) > 0 && ctx.shouldCreateVndkSourceAbiDump() {
-		vndkVersion := ctx.DeviceConfig().PlatformVndkVersion()
-		if ver := ctx.DeviceConfig().VndkVersion(); ver != "" && ver != "current" {
-			vndkVersion = ver
-		}
+	//if len(objs.sAbiDumpFiles) > 0 && ctx.shouldCreateVndkSourceAbiDump() {
+	//	vndkVersion := ctx.DeviceConfig().PlatformVndkVersion()
+	//	if ver := ctx.DeviceConfig().VndkVersion(); ver != "" && ver != "current" {
+	//		vndkVersion = ver
+	//	}
 
-		exportIncludeDirs := library.flagExporter.exportedIncludes(ctx)
-		var SourceAbiFlags []string
-		for _, dir := range exportIncludeDirs.Strings() {
-			SourceAbiFlags = append(SourceAbiFlags, "-I"+dir)
-		}
-		for _, reexportedInclude := range extractExportIncludesFromFlags(library.sabi.Properties.ReexportedIncludeFlags) {
-			SourceAbiFlags = append(SourceAbiFlags, reexportedInclude)
-		}
-		exportedHeaderFlags := strings.Join(SourceAbiFlags, " ")
-		library.sAbiOutputFile = TransformDumpToLinkedDump(ctx, objs.sAbiDumpFiles, soFile, fileName, exportedHeaderFlags,
-			android.OptionalPathForModuleSrc(ctx, library.Properties.Header_abi_checker.Symbol_file),
-			library.Properties.Header_abi_checker.Exclude_symbol_versions,
-			library.Properties.Header_abi_checker.Exclude_symbol_tags)
+	//	exportIncludeDirs := library.flagExporter.exportedIncludes(ctx)
+	//	var SourceAbiFlags []string
+	//	for _, dir := range exportIncludeDirs.Strings() {
+	//		SourceAbiFlags = append(SourceAbiFlags, "-I"+dir)
+	//	}
+	//	for _, reexportedInclude := range extractExportIncludesFromFlags(library.sabi.Properties.ReexportedIncludeFlags) {
+	//		SourceAbiFlags = append(SourceAbiFlags, reexportedInclude)
+	//	}
+	//	exportedHeaderFlags := strings.Join(SourceAbiFlags, " ")
+	//	library.sAbiOutputFile = TransformDumpToLinkedDump(ctx, objs.sAbiDumpFiles, soFile, fileName, exportedHeaderFlags,
+	//		android.OptionalPathForModuleSrc(ctx, library.Properties.Header_abi_checker.Symbol_file),
+	//		library.Properties.Header_abi_checker.Exclude_symbol_versions,
+	//		library.Properties.Header_abi_checker.Exclude_symbol_tags)
 
-		refAbiDumpFile := getRefAbiDumpFile(ctx, vndkVersion, fileName)
-		if refAbiDumpFile != nil {
-			library.sAbiDiff = SourceAbiDiff(ctx, library.sAbiOutputFile.Path(),
-				refAbiDumpFile, fileName, exportedHeaderFlags, ctx.isLlndk(), ctx.isVndkExt())
-		}
-	}
+	//	//refAbiDumpFile := getRefAbiDumpFile(ctx, vndkVersion, fileName)
+	//	//if refAbiDumpFile != nil {
+	//	//	library.sAbiDiff = SourceAbiDiff(ctx, library.sAbiOutputFile.Path(),
+	//	//		refAbiDumpFile, fileName, exportedHeaderFlags, ctx.isLlndk(), ctx.isVndkExt())
+	//	//}
+	//}
 }
 
 func (library *libraryDecorator) link(ctx ModuleContext,

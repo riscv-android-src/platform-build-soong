@@ -28,6 +28,7 @@ ALL_ARCHITECTURES = (
     'arm64',
     'mips',
     'mips64',
+    'riscv64',
     'x86',
     'x86_64',
 )

@@ -46,6 +46,17 @@ var (
 		"-g",
 
 		"-fno-strict-aliasing",
+		"-Wno-implicit-int-float-conversion",
+		"-Wno-deprecated-copy",
+		"-Wno-implicit-fallthrough",
+		"-Wno-unused-parameter",
+		"-Wno-deprecated-copy",
+		"-Wno-int-in-bool-context",
+		"-Wno-tautological-overlap-compare",
+		"-Wno-c99-designator",
+		"-Wno-reorder-init-list",
+		"-Wno-int-in-bool-context",
+		"-Wno-bool-operation",
 	}
 
 	commonGlobalConlyflags = []string{}
@@ -122,8 +133,10 @@ var (
 
 	// prebuilts/clang default settings.
 	ClangDefaultBase         = "prebuilts/clang/host"
-	ClangDefaultVersion      = "clang-r353983c"
-	ClangDefaultShortVersion = "9.0.3"
+        //ClangDefaultVersion      = "clang-r353983c"
+        //ClangDefaultShortVersion = "9.0.3"
+	ClangDefaultVersion      = "clang-dev"
+	ClangDefaultShortVersion = "11.0.3"
 
 	// Directories with warnings from Android.bp files.
 	WarningAllowedProjects = []string{

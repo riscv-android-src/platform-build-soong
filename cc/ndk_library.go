@@ -130,6 +130,7 @@ func normalizeNdkApiLevel(ctx android.BaseContext, apiLevel string,
 		android.Arm64:  21,
 		android.Mips:   minVersion,
 		android.Mips64: 21,
+		android.Riscv64:  21,
 		android.X86:    minVersion,
 		android.X86_64: 21,
 	}

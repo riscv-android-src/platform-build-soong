@@ -32,6 +32,7 @@ var (
 	Arm64  = newArch("arm64", "lib64")
 	Mips   = newArch("mips", "lib32")
 	Mips64 = newArch("mips64", "lib64")
+	Riscv64  = newArch("riscv64", "lib64")
 	X86    = newArch("x86", "lib32")
 	X86_64 = newArch("x86_64", "lib64")
 
@@ -45,6 +46,7 @@ var archTypeMap = map[string]ArchType{
 	"arm64":  Arm64,
 	"mips":   Mips,
 	"mips64": Mips64,
+	"riscv64":  Riscv64,
 	"x86":    X86,
 	"x86_64": X86_64,
 }
@@ -66,6 +68,9 @@ module {
         },
         mips64: {
             // Host or device variants with mips64 architecture
+        },
+        riscv64: {
+            // Host or device variants with riscv64 architecture
         },
         x86: {
             // Host or device variants with x86 architecture
@@ -153,6 +158,9 @@ var archVariants = map[ArchType][]string{
 	Mips64: {
 		"mips64r2",
 		"mips64r6",
+	},
+	Riscv64: {
+		"c910",
 	},
 	X86: {
 		"amberlake",
@@ -606,7 +614,7 @@ var (
 		LinuxBionic: []ArchType{X86_64},
 		Darwin:      []ArchType{X86_64},
 		Windows:     []ArchType{X86, X86_64},
-		Android:     []ArchType{Arm, Arm64, Mips, Mips64, X86, X86_64},
+		Android:     []ArchType{Arm, Arm64, Mips, Mips64, Riscv64, X86, X86_64},
 		Fuchsia:     []ArchType{Arm64, X86_64},
 	}
 )
@@ -705,7 +713,7 @@ func (target Target) String() string {
 //      target.host.compile_multilib).
 //    - The default multilib passed to InitAndroidArchModule if compile_multilib was not set.
 // Valid multilib values include:
-//    "both": compile for all Targets supported by the OsClass (generally x86_64 and x86, or arm64 and arm).
+//    "both": compile for all Targets supported by the OsClass (generally x86_64 and x86, or arm64 and arm, or riscv64).
 //    "first": compile for only a single preferred Target supported by the OsClass.  This is generally x86_64 or arm64,
 //        but may be arm for a 32-bit only build or a build with TARGET_PREFER_32_BIT=true set.
 //    "32": compile for only a single 32-bit Target supported by the OsClass.
@@ -1539,6 +1547,10 @@ func getMegaDeviceConfig() []archConfig {
 		// mips64r2 is mismatching 64r2 and 64r6 libraries during linking to libgcc
 		//{"mips64", "mips64r2", "", []string{"mips64"}},
 		{"mips64", "mips64r6", "", []string{"mips64"}},
+		{"riscv64", "", "", []string{"riscv64"}},
+		{"riscv64", "rv64imafc", "", []string{"riscv64"}},
+		{"riscv64", "rv64imafdc", "", []string{"riscv64"}},
+		{"riscv64", "rv64imac", "c910", []string{"riscv64"}},
 		{"x86", "", "", []string{"x86"}},
 		{"x86", "atom", "", []string{"x86"}},
 		{"x86", "haswell", "", []string{"x86"}},
@@ -1560,6 +1572,7 @@ func getNdkAbisConfig() []archConfig {
 	return []archConfig{
 		{"arm", "armv7-a", "", []string{"armeabi"}},
 		{"arm64", "armv8-a", "", []string{"arm64-v8a"}},
+		{"riscv64", "", "", []string{"riscv64"}},
 		{"x86", "", "", []string{"x86"}},
 		{"x86_64", "", "", []string{"x86_64"}},
 	}
