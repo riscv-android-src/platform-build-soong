@@ -61,8 +61,6 @@ func init() {
 	pctx.SourcePathVariable("Riscv64GccRoot",
 		"prebuilts/gcc/${HostPrebuiltTag}/riscv64/riscv64-linux-android-${riscv64GccVersion}")
 
-	pctx.StaticVariable("Riscv64IncludeFlags", bionicHeaders("riscv"))
-
 	// Clang cflags
 	pctx.StaticVariable("Riscv64ClangCflags", strings.Join(ClangFilterUnknownCflags(riscv64ClangCflags), " "))
 	pctx.StaticVariable("Riscv64ClangLdflags", strings.Join(ClangFilterUnknownCflags(riscv64Ldflags), " "))

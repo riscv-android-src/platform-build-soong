@@ -44,6 +44,7 @@ PLATFORM_LIBRARIES=(
 PRODUCTS=(
   aosp_arm
   aosp_arm64
+  aosp_riscv64
   aosp_x86
   aosp_x86_64
 )
@@ -61,7 +62,7 @@ echo_and_run() {
 lib_dir() {
   case $1 in
     (aosp_arm|aosp_x86) echo "lib";;
-    (aosp_arm64|aosp_x86_64) echo "lib64";;
+    (aosp_arm64|aosp_riscv64|aosp_x86_64) echo "lib64";;
   esac
 }
 

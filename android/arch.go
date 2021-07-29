@@ -93,7 +93,7 @@ module {
 
 // An Arch indicates a single CPU architecture.
 type Arch struct {
-	// The type of the architecture (arm, arm64, x86, or x86_64).
+	// The type of the architecture (arm, arm64, riscv64, x86, or x86_64).
 	ArchType ArchType
 
 	// The variant of the architecture, for example "armv7-a" or "armv7-a-neon" for arm.
@@ -338,7 +338,7 @@ var (
 	Windows = newOsType("windows", Host, true, X86, X86_64)
 	// Android is the OS for target devices that run all of Android, including the Linux kernel
 	// and the Bionic libc runtime.
-	Android = newOsType("android", Device, false, Arm, Arm64, X86, X86_64)
+	Android = newOsType("android", Device, false, Arm, Arm64, Riscv64, X86, X86_64)
 	// Fuchsia is the OS for target devices that run Fuchsia.
 	Fuchsia = newOsType("fuchsia", Device, false, Arm64, X86_64)
 

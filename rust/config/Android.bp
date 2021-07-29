@@ -12,6 +12,7 @@ bootstrap_go_package {
     srcs: [
         "arm_device.go",
         "arm64_device.go",
+        "riscv64_device.go",
         "global.go",
         "lints.go",
         "toolchain.go",
