@@ -1751,7 +1751,7 @@ func (c *Module) GenerateAndroidBuildActions(actx android.ModuleContext) {
 	// Optimization to reduce size of build.ninja
 	// Replace the long list of flags for each file with a module-local variable
 	/* FIXME: Skip Werror for riscv64.  */
-	for i := 0; i < len(flags.CFlags); i++ {
+	for i := 0; i < len(flags.Local.CFlags); i++ {
 		flags.Local.CFlags[i] = strings.Replace(flags.Local.CFlags[i], "-Werror", "-Wno-error", -1)
 		flags.Local.CFlags[i] = strings.Replace(flags.Local.CFlags[i], "-Wall", "", -1)
 	}
