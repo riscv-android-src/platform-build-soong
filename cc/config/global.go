@@ -66,6 +66,8 @@ var (
 		"-Wno-reorder-init-list",
 		"-Wno-int-in-bool-context",
 		"-Wno-bool-operation",
+		"-Wno-return-type",
+		"-Wno-sometimes-uninitialized",
 	}
 
 	commonGlobalConlyflags = []string{}
