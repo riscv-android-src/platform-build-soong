@@ -73,6 +73,10 @@ func (t *toolchainRiscv64) Supported() bool {
 	return true
 }
 
+func (toolchainRiscv64) LibclangRuntimeLibraryArch() string {
+	return "riscv64"
+}
+
 func Riscv64ToolchainFactory(arch android.Arch) Toolchain {
 	toolchainRustFlags := []string{
 		"${config.Riscv64ToolchainRustFlags}",
