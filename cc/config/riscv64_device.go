@@ -101,7 +101,7 @@ func (t *toolchainRiscv64) GccVersion() string {
 }
 
 func (t *toolchainRiscv64) IncludeFlags() string {
-	return "${config.Riscv64IncludeFlags}"
+	return ""
 }
 
 func (t *toolchainRiscv64) ClangTriple() string {

@@ -30,9 +30,9 @@ var (
 		"-Wl,-z,separate-code",
 	}
 
-	Riscv64ArchVariantRustFlags = map[string][]string{
-		"c910": []string{},
-	}
+	//Riscv64ArchVariantRustFlags = map[string][]string{
+	//	"c910": []string{},
+	//}
 )
 
 func init() {
@@ -41,10 +41,10 @@ func init() {
 	pctx.StaticVariable("Riscv64ToolchainRustFlags", strings.Join(Riscv64RustFlags, " "))
 	pctx.StaticVariable("Riscv64ToolchainLinkFlags", strings.Join(Riscv64LinkFlags, " "))
 
-	for variant, rustFlags := range Riscv64ArchVariantRustFlags {
-		pctx.StaticVariable("Riscv64"+variant+"VariantRustFlags",
-			strings.Join(rustFlags, " "))
-	}
+	//for variant, rustFlags := range Riscv64ArchVariantRustFlags {
+	//	pctx.StaticVariable("Riscv64"+variant+"VariantRustFlags",
+	//		strings.Join(rustFlags, " "))
+	//}
 
 }
 
@@ -80,7 +80,7 @@ func (toolchainRiscv64) LibclangRuntimeLibraryArch() string {
 func Riscv64ToolchainFactory(arch android.Arch) Toolchain {
 	toolchainRustFlags := []string{
 		"${config.Riscv64ToolchainRustFlags}",
-		"${config.Riscv64" + arch.ArchVariant + "VariantRustFlags}",
+		//"${config.Riscv64" + arch.ArchVariant + "VariantRustFlags}",
 	}
 
 	toolchainRustFlags = append(toolchainRustFlags, deviceGlobalRustFlags...)
