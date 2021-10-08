@@ -173,6 +173,7 @@ const (
 	// ArchType names in arch.go
 	ARCH_ARM    = "arm"
 	ARCH_ARM64  = "arm64"
+	ARCH_RISCV64= "riscv64"
 	ARCH_X86    = "x86"
 	ARCH_X86_64 = "x86_64"
 
@@ -205,6 +206,7 @@ var (
 	PlatformArchMap = map[string]string{
 		ARCH_ARM:           "//build/bazel/platforms/arch:arm",
 		ARCH_ARM64:         "//build/bazel/platforms/arch:arm64",
+		ARCH_RISCV64:       "//build/bazel/platforms/arch:riscv64",
 		ARCH_X86:           "//build/bazel/platforms/arch:x86",
 		ARCH_X86_64:        "//build/bazel/platforms/arch:x86_64",
 		CONDITIONS_DEFAULT: "//conditions:default", // The default condition of as arch select map.
@@ -234,6 +236,7 @@ type LabelAttribute struct {
 	X86_64 Label
 	Arm    Label
 	Arm64  Label
+	Riscv64  Label
 }
 
 func (attr *LabelAttribute) GetValueForArch(arch string) Label {
@@ -242,6 +245,8 @@ func (attr *LabelAttribute) GetValueForArch(arch string) Label {
 		return attr.Arm
 	case ARCH_ARM64:
 		return attr.Arm64
+	case ARCH_RISCV64:
+		return attr.Riscv64
 	case ARCH_X86:
 		return attr.X86
 	case ARCH_X86_64:
@@ -259,6 +264,8 @@ func (attr *LabelAttribute) SetValueForArch(arch string, value Label) {
 		attr.Arm = value
 	case ARCH_ARM64:
 		attr.Arm64 = value
+	case ARCH_RISCV64:
+		attr.Riscv64 = value
 	case ARCH_X86:
 		attr.X86 = value
 	case ARCH_X86_64:
@@ -269,7 +276,7 @@ func (attr *LabelAttribute) SetValueForArch(arch string, value Label) {
 }
 
 func (attr LabelAttribute) HasConfigurableValues() bool {
-	return attr.Arm.Label != "" || attr.Arm64.Label != "" || attr.X86.Label != "" || attr.X86_64.Label != ""
+	return attr.Arm.Label != "" || attr.Arm64.Label != "" || attr.Riscv64.Label != "" || attr.X86.Label != "" || attr.X86_64.Label != ""
 }
 
 // Arch-specific label_list typed Bazel attribute values. This should correspond
@@ -279,6 +286,7 @@ type labelListArchValues struct {
 	X86_64 LabelList
 	Arm    LabelList
 	Arm64  LabelList
+	Riscv64  LabelList
 	Common LabelList
 
 	ConditionsDefault LabelList
@@ -360,6 +368,7 @@ func (attrs *LabelListAttribute) archValuePtrs() map[string]*LabelList {
 		ARCH_X86_64:        &attrs.ArchValues.X86_64,
 		ARCH_ARM:           &attrs.ArchValues.Arm,
 		ARCH_ARM64:         &attrs.ArchValues.Arm64,
+		ARCH_RISCV64:       &attrs.ArchValues.Riscv64,
 		CONDITIONS_DEFAULT: &attrs.ArchValues.ConditionsDefault,
 	}
 }
@@ -442,6 +451,7 @@ type stringListArchValues struct {
 	X86_64 []string
 	Arm    []string
 	Arm64  []string
+	Riscv64  []string
 	Common []string
 
 	ConditionsDefault []string
@@ -481,6 +491,7 @@ func (attrs *StringListAttribute) archValuePtrs() map[string]*[]string {
 		ARCH_X86_64:        &attrs.ArchValues.X86_64,
 		ARCH_ARM:           &attrs.ArchValues.Arm,
 		ARCH_ARM64:         &attrs.ArchValues.Arm64,
+		ARCH_RISCV64:       &attrs.ArchValues.Riscv64,
 		CONDITIONS_DEFAULT: &attrs.ArchValues.ConditionsDefault,
 	}
 }

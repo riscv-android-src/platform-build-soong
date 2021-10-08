@@ -78,7 +78,6 @@ func init() {
 }
 
 type toolchainRiscv64 struct {
-	toolchainBionic
 	toolchain64Bit
 	clangCflags          string
 	toolchainClangCflags string
