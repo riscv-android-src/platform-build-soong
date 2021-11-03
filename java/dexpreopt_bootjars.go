@@ -567,17 +567,17 @@ func buildBootImageZipInPredefinedLocation(ctx android.ModuleContext, image *boo
 // Generate boot image build rules for a specific target.
 func buildBootImageVariant(ctx android.ModuleContext, image *bootImageVariant, profile android.Path) {
 
-	globalSoong := dexpreopt.GetGlobalSoongConfig(ctx)
-	global := dexpreopt.GetGlobalConfig(ctx)
+	//globalSoong := dexpreopt.GetGlobalSoongConfig(ctx)
+	//global := dexpreopt.GetGlobalConfig(ctx)
 
 	arch := image.target.Arch.ArchType
 	os := image.target.Os.String() // We need to distinguish host-x86 and device-x86.
 	symbolsDir := image.symbolsDir.Join(ctx, os, image.installDirOnHost, arch.String())
-	symbolsFile := symbolsDir.Join(ctx, image.stem+".oat")
+	//symbolsFile := symbolsDir.Join(ctx, image.stem+".oat")
 	outputDir := image.dir.Join(ctx, os, image.installDirOnHost, arch.String())
-	outputPath := outputDir.Join(ctx, image.stem+".oat")
-	oatLocation := dexpreopt.PathToLocation(outputPath, arch)
-	imagePath := outputPath.ReplaceExtension(ctx, "art")
+	//outputPath := outputDir.Join(ctx, image.stem+".oat")
+	//oatLocation := dexpreopt.PathToLocation(outputPath, arch)
+	//imagePath := outputPath.ReplaceExtension(ctx, "art")
 
 	rule := android.NewRuleBuilder(pctx, ctx)
 
@@ -602,8 +602,9 @@ func buildBootImageVariant(ctx android.ModuleContext, image *bootImageVariant, p
 		cmd.Text(`ANDROID_LOG_TAGS="*:v"`)
 	}
 
-	invocationPath := outputPath.ReplaceExtension(ctx, "invocation")
+	//invocationPath := outputPath.ReplaceExtension(ctx, "invocation")
 
+	/*disable dex2oat as art not support riscv yet
 	cmd.Tool(globalSoong.Dex2oat).
 		Flag("--avoid-storing-invocation").
 		FlagWithOutput("--write-invocation-to=", invocationPath).ImplicitOutput(invocationPath).
@@ -673,7 +674,7 @@ func buildBootImageVariant(ctx android.ModuleContext, image *bootImageVariant, p
 	if extraFlags != "" {
 		cmd.Flag(extraFlags)
 	}
-
+	*/
 	cmd.Textf(`|| ( echo %s ; false )`, proptools.ShellEscape(failureMessage))
 
 	installDir := filepath.Join("/", image.installDirOnHost, arch.String())
