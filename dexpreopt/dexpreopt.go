@@ -101,7 +101,6 @@ func GenerateDexpreoptRule(ctx android.BuilderContext, globalSoong *GlobalSoongC
 }
 
 func dexpreoptDisabled(ctx android.PathContext, global *GlobalConfig, module *ModuleConfig) bool {
-	/*disable it as art is not ready for riscv64
 	if contains(global.DisablePreoptModules, module.Name) {
 		return true
 	}
@@ -124,7 +123,7 @@ func dexpreoptDisabled(ctx android.PathContext, global *GlobalConfig, module *Mo
 		!global.SystemServerJars.ContainsJar(module.Name) && !module.PreoptExtractedApk {
 		return true
 	}
-	*/
+
 	return false
 }
 
