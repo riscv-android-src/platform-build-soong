@@ -313,7 +313,7 @@ func (stub *stubDecorator) install(ctx ModuleContext, path android.Path) {
 	// arm64 isn't actually a multilib toolchain, so unlike the other LP64
 	// architectures it's just installed to lib.
 	libDir := "lib"
-	if ctx.toolchain().Is64Bit() && arch != "arm64" {
+	if ctx.toolchain().Is64Bit() && arch != "arm64" && arch != "riscv64" {
 		libDir = "lib64"
 	}
 
