@@ -112,7 +112,7 @@ func (t *toolchainRiscv64) ToolchainClangCflags() string {
 }
 
 func (t *toolchainRiscv64) ClangAsflags() string {
-	return "-fno-integrated-as"
+	return ""
 }
 
 func (t *toolchainRiscv64) ClangCflags() string {
