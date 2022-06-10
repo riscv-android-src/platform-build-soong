@@ -27,6 +27,7 @@ var (
 		"-Wno-implicit-int-float-conversion",
 		"-Wno-deprecated-copy",
 		"-Wno-implicit-fallthrough",
+		"-mno-relax",
 	}
 
 	riscv64ClangCflags = append(riscv64Cflags, []string{
