@@ -55,19 +55,6 @@ var (
 		"-Werror=pragma-pack-suspicious-include",
 		"-Werror=string-plus-int",
 		"-Werror=unreachable-code-loop-increment",
-		"-Wno-implicit-int-float-conversion",
-		"-Wno-deprecated-copy",
-		"-Wno-implicit-fallthrough",
-		"-Wno-unused-parameter",
-		"-Wno-deprecated-copy",
-		"-Wno-int-in-bool-context",
-		"-Wno-tautological-overlap-compare",
-		"-Wno-c99-designator",
-		"-Wno-reorder-init-list",
-		"-Wno-int-in-bool-context",
-		"-Wno-bool-operation",
-		"-Wno-return-type",
-		"-Wno-sometimes-uninitialized",
 	}
 
 	commonGlobalConlyflags = []string{}
